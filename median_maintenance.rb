@@ -14,12 +14,7 @@ heap_low = Containers::MaxHeap.new
 heap_high = Containers::MinHeap.new
 
 def current_median(high, low)
-  case
-  when high.size > low.size
-    high.min
-  else
-    low.max
-  end
+  high.size > low.size ? high.min : low.max
 end
 
 def balanced_insert(item, low, high)
@@ -28,11 +23,7 @@ def balanced_insert(item, low, high)
     return
   end
 
-  if item > high.min
-    high.push(item)
-  else
-    low.push(item)
-  end
+  item > high.min ? high.push(item) : low.push(item)
 
   rebalance_trees(low, high)
 end
